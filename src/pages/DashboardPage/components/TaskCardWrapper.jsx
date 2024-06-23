@@ -32,6 +32,7 @@ const TaskCardWrapper = ({
   const handleClose = () => setOpen(false);
   const [taskTitle, setTaskTitle] = useState("");
   const [taskDescription, setTaskDescription] = useState("");
+  const [isAddingTask, setIsAddingTask] = useState(false);
 
   const handleCreateTask = async (status) => {
     if (taskTitle === "" || taskDescription === "") {
@@ -46,6 +47,7 @@ const TaskCardWrapper = ({
     };
 
     try {
+      setIsAddingTask(true);
       const response = await createTask(taskData);
       if (response) {
         setTaskTitle("");
@@ -54,6 +56,7 @@ const TaskCardWrapper = ({
         window.location.reload();
       }
     } catch (error) {
+      setIsAddingTask(false);
       toast.error(`Failed to add task: ${error.message}`);
     }
   };
@@ -193,6 +196,7 @@ const TaskCardWrapper = ({
                   backgroundColor: "green",
                 },
               }}
+              disabled={isAddingTask}
               onClick={() => handleCreateTask(type)}
             >
               Add Task

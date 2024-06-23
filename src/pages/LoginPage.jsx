@@ -108,6 +108,7 @@ const Login = () => {
               id="email"
               label="Email"
               variant="outlined"
+              value={"test@testing.in"}
               onChange={(e) =>
                 setFormData({ ...formData, email: e.target.value })
               }
@@ -117,6 +118,7 @@ const Login = () => {
               label="Password"
               variant="outlined"
               type="password"
+              value={"123456"}
               onChange={(e) =>
                 setFormData({ ...formData, password: e.target.value })
               }
