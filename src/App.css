@@ -1,0 +1,33 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Space Mono', monospace;
+  background-color: var(--primary-color);
+  color: #333;
+}
+
+:root {
+  --primary-color: #FFEFEF;
+  --secondary-color: #FFD9D2;
+  --tertiary-color: #FFB4A2;
+}
+
+::-webkit-scrollbar {
+  width: 0.5vw;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--tertiary-color);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: "var(--secondary-color)";
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--primary-color);
+}
