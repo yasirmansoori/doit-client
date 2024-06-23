@@ -17,8 +17,8 @@ const Login = () => {
   const navigate = useNavigate();
   const { login, error, isLoading } = useLogin();
   const [formData, setFormData] = useState({
-    email: "",
-    password: "",
+    email: "test@testing.in",
+    password: "123456",
   });
 
   const handleSubmit = async (e) => {
