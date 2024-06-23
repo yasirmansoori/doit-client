@@ -81,12 +81,12 @@ const TopBar = ({ pageName }) => {
         {/* logo on mobile */}
         <CardMedia
           component="img"
-          image="https://res.cloudinary.com/dnjcut34n/image/upload/v1718947883/misc/2_lgle9a.png"
+          image="https://res.cloudinary.com/dnjcut34n/image/upload/v1719151807/misc/thunder_dfdtah.png"
           alt="logo"
           sx={{
             objectFit: "contain",
             height: "50px",
-            width: "50px",
+            width: "100px",
             cursor: "pointer",
             display: { xs: "block", md: "none" },
           }}

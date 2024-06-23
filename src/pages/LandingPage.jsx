@@ -41,9 +41,9 @@ const LandingPage = () => {
           component="img"
           sx={{
             objectFit: "contain",
-            width: "50px",
+            width: "100px",
           }}
-          image="https://res.cloudinary.com/dnjcut34n/image/upload/v1718947883/misc/2_lgle9a.png"
+          image="https://res.cloudinary.com/dnjcut34n/image/upload/v1719151807/misc/thunder_dfdtah.png"
         />
         <Button
           size="small"
