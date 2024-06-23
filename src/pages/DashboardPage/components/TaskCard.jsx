@@ -51,6 +51,7 @@ const TaskCard = ({ taskData }) => {
   const handleCloseCommentDialog = () => setOpenCommentDialog(false);
 
   const [isDelete, setIsDelete] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const [commentText, setCommentText] = useState("");
   const [errorInComment, setErrorInComment] = useState(false);
@@ -128,6 +129,7 @@ const TaskCard = ({ taskData }) => {
 
   const handleCreateComment = async (taskId) => {
     try {
+      setIsLoading(true);
       const response = await createComment({
         taskId,
         text: commentText,
@@ -138,6 +140,7 @@ const TaskCard = ({ taskData }) => {
         window.location.reload();
       }
     } catch (error) {
+      setIsLoading(false);
       setErrorInComment(error.message);
       toast.error(`Failed to add comment: ${error.message}`);
     }
@@ -156,12 +159,14 @@ const TaskCard = ({ taskData }) => {
 
   const handleChangeStatus = async (taskId, status) => {
     try {
+      setIsLoading(true);
       const response = await changeStatus(taskId, status);
       if (response) {
         handleCloseStatusModal();
         window.location.reload();
       }
     } catch (error) {
+      setIsLoading(false);
       toast.error(`Failed to change status: ${error.message}`);
     }
   };
@@ -550,9 +555,6 @@ const TaskCard = ({ taskData }) => {
           onClose={handleCloseCommentDialog}
           PaperComponent={PaperComponentComment}
           aria-labelledby="comment-dialog"
-          sx={{
-            maxWidth: { xs: "calc(100vw)", md: "600px" },
-          }}
         >
           <DialogTitle style={{ cursor: "move" }} id="comment-dialog">
             <Typography
@@ -565,7 +567,13 @@ const TaskCard = ({ taskData }) => {
               Comments
             </Typography>
           </DialogTitle>
-          <DialogContent>
+          <DialogContent
+            sx={{
+              width: "100%",
+              minWidth: { xs: "100%", md: "500px" },
+              maxWidth: { xs: "100%", md: "700px" },
+            }}
+          >
             <DialogContentText
               sx={{
                 display: "flex",
@@ -583,7 +591,6 @@ const TaskCard = ({ taskData }) => {
                     border: "1px solid lightgray",
                     padding: "10px",
                     borderStyle: "dashed",
-                    maxWidth: "100%",
                   }}
                 >
                   <Typography
@@ -686,6 +693,7 @@ const TaskCard = ({ taskData }) => {
                       backgroundColor: "#fafafa",
                     },
                   }}
+                  disabled={isLoading}
                   onClick={() => handleCreateComment(taskData?._id)}
                 >
                   Add Comment
@@ -765,6 +773,7 @@ const TaskCard = ({ taskData }) => {
                         backgroundColor: data.bgColor,
                       },
                     }}
+                    disabled={isLoading}
                     onClick={() => handleChangeStatus(taskData?._id, data.type)}
                   >
                     {data.type}
